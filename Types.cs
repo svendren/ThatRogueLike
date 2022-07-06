@@ -15,4 +15,12 @@ namespace TRL{
             Y += move.Y;
         }
     }
+
+
+    class Character{
+        public Coord pos {get;set;}
+        public Character(Coord aPos){
+            pos = aPos;
+        }
+    }
 }
