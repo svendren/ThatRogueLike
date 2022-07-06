@@ -9,6 +9,12 @@ namespace TRL{
             pos = aPos;
             size = aSize;
         }
+
+        public Room(Coord aPos, Coord xMinMax, Coord yMinMax){
+            Random rand = new Random();
+            pos = aPos;
+            size = new Coord(rand.Next(xMinMax.X,xMinMax.Y), rand.Next(yMinMax.X,yMinMax.Y));
+        }
     }
     class Wall{
         public Coord start;

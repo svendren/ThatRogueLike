@@ -3,35 +3,41 @@ using System;
 namespace TRL{
 
     class Preview{
-        //Fix and move
-        public int[] dimensions = {15,5};
         private char tile = ' ';
-        public void draw(Coord pos, int heroHealth, List<Item> stuff){
-            Console.Clear();
-            tile = '╔';
-            for (int y = 0; y<= dimensions[1]; y++){
-                for (int x = 0; x <= dimensions[0]; x++){
-                    tile = y switch{
-                        _ when y == pos.Y && x == pos.X => '@', 
-                        // Pretend loop av array
-                        _ when stuff[0].pos.X == x && stuff[0].pos.Y == y => stuff[0].tile,
-                        _ when stuff[1].pos.X == x && stuff[1].pos.Y == y => stuff[1].tile,
-                        _ when y > 0 && y < dimensions[1] && x > 0 && x < dimensions[0] => '.',
-                        _ when (y == 0 || y == dimensions[1]) && x > 0 && x < dimensions[0] => '═',
-                        _ when y > 0 && y < dimensions[1] && (x == 0 || x == dimensions[0]) => '║',
-                        _ when y == 0 && x == 0 => '╔',
-                        _ when y == 0 && x == dimensions[0] => '╗',
-                        _ when y == dimensions[1] && x == 0 => '╚',
-                        _ when y == dimensions[1] && x == dimensions[0] => '╝',
-                        _ => ' ',
-                    };
-                    Console.Write(tile);
+        char[,] render = new char[40,40];
+        public void draw(List<Room> rooms, Hero player){
+            //Clear canvas
+            for (int i = 0; i < 40; i++){
+                for (int j = 0; j< 40; j++){
+                    render[j,i] = '▒';
                 }
-                Console.WriteLine();                
             }
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Turn: "+heroHealth);
-            Console.ResetColor();
+            //draw rooms
+            for(int r = 0; r < rooms.Count; r++){
+                for(int i = rooms[r].pos.Y; i <= rooms[r].size.Y+rooms[r].pos.Y; i++){
+                    for (int j = rooms[r].pos.X; j <= rooms[r].size.X+rooms[r].pos.X; j++){
+                        if (i == rooms[r].pos.Y || j == rooms[r].pos.X || i == rooms[r].size.Y+rooms[r].pos.Y || j == rooms[r].size.X+rooms[r].pos.X){
+                            tile = '█';
+                        }
+                        else {
+                            tile = '.';
+                        }
+                        render[j,i] = tile;
+                    }
+                }
+            }
+
+        for (int i = 0; i < 40; i++){
+            for (int j = 0; j< 40; j++){
+                Console.Write(render[j,i]);
+            }
+            Console.WriteLine();
+        }
+
+            // for(int i = 0; i < stuff.Count; i++){
+                
+            // }
+
         }
     }
 }

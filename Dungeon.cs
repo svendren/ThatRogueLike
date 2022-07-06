@@ -45,10 +45,6 @@ namespace TRL{
                 }
 
             }
-            for(int i = 0; i<rooms.Count; i++){
-                rooms[i].pos.X += Math.Abs(origin.X)+padding;
-                rooms[i].pos.Y += Math.Abs(origin.Y)+padding;
-            }
             size.X += Math.Abs(origin.X);
             size.Y += Math.Abs(origin.Y);
             origin = new Coord(0,0);

@@ -3,9 +3,13 @@
 namespace TRL{
     class Program{
         static void Main(String[]args){
-
-            Dungeon level = new Dungeon(new Coord(5,10),3);
-            level.Draw();
+            Hero player = new Hero(new Coord(7,3));
+            List<Room> rooms = new List<Room>();
+            rooms.Add(new Room(new Coord(1,1), new Coord(10,5)));
+            rooms.Add(new Room(new Coord(20,0), new Coord(8,3)));
+            
+            Preview level = new Preview();
+            level.draw(rooms,player);
             // ConsoleKeyInfo input = new ConsoleKeyInfo();
             // Hero player = new Hero(new Coord(7,3));
             // int turn = 0;
