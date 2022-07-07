@@ -4,10 +4,11 @@ namespace TRL{
 
     class Preview{
         private char tile = ' ';
-        char[,] render = new char[40,40];
-        public void draw(List<Room> rooms, Hero player){
+        char[,] render = new char[40,15];
+        string final = "";
+        public void draw(List<Room> rooms, Hero player, Enemy enemy){
             //Clear canvas
-            for (int i = 0; i < 40; i++){
+            for (int i = 0; i < 15; i++){
                 for (int j = 0; j< 40; j++){
                     render[j,i] = '▒';
                 }
@@ -26,13 +27,20 @@ namespace TRL{
                     }
                 }
             }
-
-        for (int i = 0; i < 40; i++){
-            for (int j = 0; j< 40; j++){
-                Console.Write(render[j,i]);
+            //draw characters
+            render[enemy.pos.X,enemy.pos.Y] = 'E';
+            render[player.pos.X,player.pos.Y] = '@';
+            //"render" to console
+            //TODO: console screen buffer
+            Console.Clear();
+            final = "";
+            for (int i = 0; i < 15; i++){
+                for (int j = 0; j< 40; j++){
+                    final += render[j,i];
+                }
+                final += "\n";
             }
-            Console.WriteLine();
-        }
+            Console.WriteLine(final);
 
             // for(int i = 0; i < stuff.Count; i++){
                 

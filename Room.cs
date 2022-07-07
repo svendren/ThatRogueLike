@@ -17,14 +17,28 @@ namespace TRL{
         }
     }
     class Wall{
-        public Coord start;
-        public Coord end;
-        public char side;
+    bool[,] walls;
+        public Wall(List<Room> rooms, Coord lvlSize){
+            walls = new bool[lvlSize.X,lvlSize.Y];
+            //putt i egen
+            for (int i = 0; i < lvlSize.Y; i++){
+                for (int j = 0; j< lvlSize.X; j++){
+                    walls[j,i] = false;
+                }
+            }
 
-        public Wall(Coord theStart, Coord theEnd, char aSide){
-            start = theStart;
-            end = theEnd;
-            side = aSide;
+            for(int r = 0; r < rooms.Count; r++){
+                for(int i = rooms[r].pos.Y; i <= rooms[r].size.Y+rooms[r].pos.Y; i++){
+                    for (int j = rooms[r].pos.X; j <= rooms[r].size.X+rooms[r].pos.X; j++){
+                        if (i == rooms[r].pos.Y || j == rooms[r].pos.X || i == rooms[r].size.Y+rooms[r].pos.Y || j == rooms[r].size.X+rooms[r].pos.X){
+                            walls[j,i] = true;
+                        }
+                    }
+                }
+            }
+        }
+        public bool Check(Coord at){
+            return walls[at.X,at.Y];
         }
     }
 }

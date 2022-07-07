@@ -8,5 +8,9 @@ namespace TRL{
         public Hero(Coord aPos):base(aPos){
             
         }
+
+        public void Move(Wall w, Coord dir){
+            if(!CheckDir(w,new Coord(pos.X+dir.X,pos.Y+dir.Y))) pos.Move(dir);
+        }
     }
 }
