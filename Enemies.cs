@@ -6,7 +6,10 @@ namespace TRL{
     
         public int Health{ get; set;}
 
-        public Enemy(Coord aPos):base(aPos){
+        public Enemy(Coord aPos, char aSprite):base(aPos, aSprite){
+            
+        }
+        public Enemy(Coord aPos, char[] aSprite):base(aPos, aSprite){
             
         }
 

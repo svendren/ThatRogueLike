@@ -5,7 +5,10 @@ namespace TRL{
     
         public int Health{ get; set;}
 
-        public Hero(Coord aPos):base(aPos){
+        public Hero(Coord aPos, char aSprite):base(aPos, aSprite){
+            
+        }
+        public Hero(Coord aPos, char[] aSprite):base(aPos, aSprite){
             
         }
 

@@ -6,7 +6,7 @@ namespace TRL{
         private char tile = ' ';
         char[,] render = new char[40,15];
         string final = "";
-        public void draw(List<Room> rooms, Hero player, Enemy enemy){
+        public void draw(int frame, List<Room> rooms, Hero player, Enemy enemy){
             //Clear canvas
             for (int i = 0; i < 15; i++){
                 for (int j = 0; j< 40; j++){
@@ -28,8 +28,8 @@ namespace TRL{
                 }
             }
             //draw characters
-            render[enemy.pos.X,enemy.pos.Y] = 'E';
-            render[player.pos.X,player.pos.Y] = '@';
+            render[enemy.pos.X,enemy.pos.Y] = enemy.GetSprite(frame);
+            render[player.pos.X,player.pos.Y] = player.GetSprite(frame);
             //"render" to console
             //TODO: console screen buffer
             Console.Clear();
@@ -46,6 +46,22 @@ namespace TRL{
                 
             // }
 
+        }
+    }
+    class Animation{
+        public int frame=1;
+        int finalFrame;
+        int frameTime;
+        public Animation(int frameCount, int timing){
+            finalFrame=frameCount;
+            frameTime = timing;
+        }
+        public void animationStart(){
+            while(true){
+                frame++;
+                if(frame>finalFrame)frame=1;
+                Thread.Sleep(frameTime);
+            }
         }
     }
 }

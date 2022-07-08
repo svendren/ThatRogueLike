@@ -3,18 +3,22 @@
 namespace TRL{
     class Program{
         static void Main(String[]args){
-            Hero player = new Hero(new Coord(10,3));
-            Enemy enemy = new Enemy(new Coord(6,3));
+            Hero player = new Hero(new Coord(10,3),new char[4]{'a','b','c','d'});
+            Enemy enemy = new Enemy(new Coord(6,3),new char[2]{'o','O'});
             List<Room> rooms = new List<Room>();         
             Preview level = new Preview();
             ConsoleKeyInfo input = new ConsoleKeyInfo();
+            Animation anim = new Animation(4,500);
+
+            Thread animationThread = new Thread(new ThreadStart(anim.animationStart));
+            animationThread.Start();
             
             rooms.Add(new Room(new Coord(1,1), new Coord(10,5)));
             rooms.Add(new Room(new Coord(20,0), new Coord(8,3)));
             Wall walls = new Wall(rooms,new Coord(40,15));
 
             while (input.Key != ConsoleKey.Q){
-                level.draw(rooms,player,enemy);
+                level.draw(anim.frame,rooms,player,enemy);
                 Console.WriteLine("X:"+player.pos.X+" Y: "+player.pos.Y);
                 input = Console.ReadKey();            
                 Coord movement = input.Key switch{
