@@ -3,8 +3,8 @@
 namespace TRL{
     class Program{
         static void Main(String[]args){
-            Hero player = new Hero(new Coord(10,3),new char[4]{'a','b','c','d'});
-            Enemy enemy = new Enemy(new Coord(6,3),new char[2]{'o','O'});
+            Hero player = new Hero(new Coord(10,3),new char[4]{'A','B','C','D'});
+            Enemy enemy = new Enemy(new Coord(6,3),new char[2]{'0','O'});
             List<Room> rooms = new List<Room>();         
             Preview level = new Preview();
             ConsoleKeyInfo input = new ConsoleKeyInfo();
@@ -32,6 +32,7 @@ namespace TRL{
                 enemy.Move(walls);
                 
             }
+            animationThread.Abort();
             
             
             
