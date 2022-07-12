@@ -48,20 +48,5 @@ namespace TRL{
 
         }
     }
-    class Animation{
-        public int frame=1;
-        int finalFrame;
-        int frameTime;
-        public Animation(int frameCount, int timing){
-            finalFrame=frameCount;
-            frameTime = timing;
-        }
-        public void animationStart(){
-            while(true){
-                frame++;
-                if(frame>finalFrame)frame=1;
-                Thread.Sleep(frameTime);
-            }
-        }
-    }
+    
 }
